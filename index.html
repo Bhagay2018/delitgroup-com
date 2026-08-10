@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeeLit Group Limited | B2B FMCG Wholesale Distributor</title>
+    <style>
+        /* CSS Reset & General Rules */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #0a2540;
+            --accent: #0070f3;
+            --text-dark: #2d3748;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation Bar */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn-contact {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            border: 1px solid #cbd5e1;
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Value Props */
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Brands/Categories Section */
+        .categories {
+            background: var(--white);
+            padding: 4rem 2rem;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+        }
+
+        .grid-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cat-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #94a3b8;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <div class="logo">DeeLit <span>Group</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Brands & Products</a></li>
+                <li><a href="contact.html" class="btn-contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Premier FMCG Wholesale & B2B Distribution</h1>
+                <p>Connecting international brands with retailers, e-commerce channels, and bulk buyers across the UK and Europe.</p>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn-primary">Wholesale Enquiries</a>
+                    <a href="about.html" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Propositions -->
+        <section class="features">
+            <div class="feature-card">
+                <h3>Global Sourcing</h3>
+                <p>Direct supply chains with verified international manufacturers and official distributors.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Bulk FMCG Supply</h3>
+                <p>Scalable inventory solutions across personal care, appliances, consumer electronics, and consumer goods.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Reliable Logistics</h3>
+                <p>Streamlined warehousing, customs compliance, and door-to-door fulfillment capabilities.</p>
+            </div>
+        </section>
+
+        <!-- Core Categories -->
+        <section class="categories">
+            <div class="categories-container">
+                <h2 class="section-title">Core Brand Portfolio & Categories</h2>
+                <div class="grid-categories">
+                    <div class="cat-item">Personal & Oral Care</div>
+                    <div class="cat-item">Home & Coffee Appliances</div>
+                    <div class="cat-item">Batteries & Power Systems</div>
+                    <div class="cat-item">Water Filtration Solutions</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>DeeLit Group Limited</h4>
+                <p>128 City Road, London, EC1V 2NX, United Kingdom</p>
+                <p>Company No: 13414733</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email: info@delitgroup.com</p>
+                <p>Phone: +44 1753 463 912</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DeeLit Group Limited. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
