@@ -82,18 +82,22 @@
 
         <div class="contact-card">
             <h2>Send a Message</h2>
-            <form action="mailto:info@delitgroup.com" method="post" enctype="text/plain">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required placeholder="Your Name">
+            <form action="https://formsubmit.co/info@delitgroup.com" method="POST">
+    <!-- Form Customizations -->
+    <input type="hidden" name="_subject" value="New Wholesale Enquiry - DeeLit Group Website">
+    <input type="hidden" name="_template" value="table">
 
-                <label for="email">Business Email</label>
-                <input type="email" id="email" name="email" required placeholder="name@company.com">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="Name" required placeholder="Your Name">
 
-                <label for="message">Enquiry Details</label>
-                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your inventory needs or wholesale request..."></textarea>
+    <label for="email">Business Email</label>
+    <input type="email" id="email" name="Email" required placeholder="name@company.com">
 
-                <button type="submit">Submit Enquiry</button>
-            </form>
+    <label for="message">Enquiry Details</label>
+    <textarea id="message" name="Message" rows="5" required placeholder="Tell us about your inventory needs or wholesale request..."></textarea>
+
+    <button type="submit">Submit Enquiry</button>
+</form>
         </div>
     </main>
 
