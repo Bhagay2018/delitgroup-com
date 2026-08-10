@@ -6,32 +6,50 @@
     <title>Contact Us | DeeLit Group Limited</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        :root { --primary: #0a2540; --accent: #0070f3; --text-dark: #2d3748; --text-light: #64748b; --bg-light: #f8fafc; --white: #ffffff; }
+        :root { --primary: #0a2540; --accent: #0070f3; --whatsapp: #25D366; --text-dark: #2d3748; --text-light: #64748b; --bg-light: #f8fafc; --white: #ffffff; }
         body { color: var(--text-dark); line-height: 1.6; background-color: var(--bg-light); }
 
         header { background: var(--white); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
         nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; }
+        
         .logo-img { height: 45px; width: auto; display: block; }
         .logo-link { display: flex; align-items: center; text-decoration: none; }
+
         nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
         nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
         nav a:hover { color: var(--accent); }
         .btn-contact { background-color: var(--primary); color: var(--white) !important; padding: 0.6rem 1.2rem; border-radius: 6px; }
 
         .page-header { background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%); color: var(--white); padding: 4rem 2rem; text-align: center; }
-        .page-header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .page-header p { font-size: 1.2rem; color: #cbd5e1; }
 
         .container { max-width: 1100px; margin: 3rem auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-        .contact-card { background: var(--white); padding: 2.5rem; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .contact-card { background: var(--white); padding: 2.5rem; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .contact-card h2 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem; }
+        
         .info-item { margin-bottom: 1.2rem; }
-        .info-item h4 { color: var(--primary); font-size: 1rem; }
-        .info-item p { color: var(--text-light); }
+        .info-item h4 { color: var(--primary); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
+        .info-item p { color: var(--text-light); font-size: 1rem; }
+        .info-item a { color: var(--accent); text-decoration: none; }
+        .info-item a:hover { text-decoration: underline; }
+
+        .btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; background-color: var(--whatsapp); color: var(--white); padding: 0.75rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 0.5rem; margin-bottom: 1.5rem; width: 100%; transition: opacity 0.2s; }
+        .btn-whatsapp:hover { opacity: 0.9; text-decoration: none; }
+
+        .guarantee-box { background-color: #f0f9ff; border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: 0 6px 6px 0; margin-top: 1.5rem; }
+        .guarantee-box p { color: #0369a1; font-weight: 500; font-size: 0.95rem; }
+
+        .social-links { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #e2e8f0; display: flex; gap: 1rem; }
+        .social-links a { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .social-links a:hover { color: var(--accent); }
 
         form label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--text-dark); }
         form input, form textarea { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 1.2rem; font-size: 1rem; }
-        form button { background: var(--accent); color: var(--white); border: none; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1rem; }
+        form button { background: var(--accent); color: var(--white); border: none; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1rem; transition: background 0.2s; }
         form button:hover { background: #0056b3; }
+        
+        .captcha-notice { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 1rem; }
 
         footer { background: var(--primary); color: #94a3b8; padding: 3rem 2rem 1.5rem; margin-top: 4rem; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
@@ -40,6 +58,7 @@
 </head>
 <body>
 
+    <!-- Header / Navigation -->
     <header>
         <nav>
             <a href="index.html" class="logo-link">
@@ -54,63 +73,97 @@
         </nav>
     </header>
 
+    <!-- Page Header Banner -->
     <section class="page-header">
-        <h1>Contact DeeLit Group Limited</h1>
-        <p>Get in touch for wholesale enquiries, bulk quotes, and distribution partnerships</p>
+        <h1>Let’s talk</h1>
+        <p>We have answers to your business queries!</p>
     </section>
 
+    <!-- Main Content -->
     <main class="container">
+        <!-- Contact Details -->
         <div class="contact-card">
-            <h2>Company Details</h2>
+            <h2>DeeLit Group Limited</h2>
+            
+            <a href="https://wa.me/447842402078" target="_blank" class="btn-whatsapp">
+                Message us on WhatsApp
+            </a>
+
             <div class="info-item">
                 <h4>Registered Address</h4>
-                <p>128 City Road, London, EC1V 2NX, United Kingdom</p>
+                <p>128 City Road, London EC1V 2NX</p>
+            </div>
+            <div class="info-item">
+                <h4>Phone</h4>
+                <p><a href="tel:+441753463912">+44 1753 463 912</a></p>
+            </div>
+            <div class="info-item">
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/447842402078" target="_blank">+44 7842402078</a></p>
+            </div>
+            <div class="info-item">
+                <h4>Email</h4>
+                <p><a href="mailto:Info@delitgroup.com">Info@delitgroup.com</a></p>
             </div>
             <div class="info-item">
                 <h4>Company Registration Number</h4>
                 <p>13414733</p>
             </div>
             <div class="info-item">
-                <h4>Email Us</h4>
-                <p>info@delitgroup.com</p>
+                <h4>VAT Number</h4>
+                <p>GB449508857</p>
             </div>
             <div class="info-item">
-                <h4>Phone</h4>
-                <p>+44 1753 463 912</p>
+                <h4>Opening Hours</h4>
+                <p>Open today: 09:00 am – 05:00 pm</p>
+            </div>
+
+            <div class="guarantee-box">
+                <p>We have what you need and at prices you will love. Guaranteed! Get in touch and let’s work together to make you a high-ranking business.</p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="social-links">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
             </div>
         </div>
 
+        <!-- Contact Form (HTTPS Secure via FormSubmit) -->
         <div class="contact-card">
-            <h2>Send a Message</h2>
-            <form action="https://formsubmit.co/info@delitgroup.com" method="POST">
-    <!-- Form Customizations -->
-    <input type="hidden" name="_subject" value="New Wholesale Enquiry - DeeLit Group Website">
-    <input type="hidden" name="_template" value="table">
+            <h2>Send Us a Message</h2>
+            <form action="https://formsubmit.co/Info@delitgroup.com" method="POST">
+                <!-- Custom Configuration -->
+                <input type="hidden" name="_subject" value="New Business Enquiry - DeeLit Group Website">
+                <input type="hidden" name="_template" value="table">
 
-    <label for="name">Full Name</label>
-    <input type="text" id="name" name="Name" required placeholder="Your Name">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="Name" required placeholder="Your Name">
 
-    <label for="email">Business Email</label>
-    <input type="email" id="email" name="Email" required placeholder="name@company.com">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="Email" required placeholder="name@company.com">
 
-    <label for="message">Enquiry Details</label>
-    <textarea id="message" name="Message" rows="5" required placeholder="Tell us about your inventory needs or wholesale request..."></textarea>
+                <label for="message">Message</label>
+                <textarea id="message" name="Message" rows="5" required placeholder="Tell us about your business queries or inventory needs..."></textarea>
 
-    <button type="submit">Submit Enquiry</button>
-</form>
+                <button type="submit">Send</button>
+            </form>
+            
+            <p class="captcha-notice">Protected by standard SSL/HTTPS encryption for secure submission.</p>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div>
                 <h4 style="color: white; margin-bottom: 0.5rem;">DeeLit Group Limited</h4>
-                <p>128 City Road, London, EC1V 2NX, United Kingdom</p>
-                <p>Company No: 13414733</p>
+                <p>128 City Road, London EC1V 2NX</p>
+                <p>Company No: 13414733 | VAT: GB449508857</p>
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 0.5rem;">Contact</h4>
-                <p>Email: info@delitgroup.com</p>
+                <p>Email: Info@delitgroup.com</p>
                 <p>Phone: +44 1753 463 912</p>
             </div>
         </div>
