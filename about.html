@@ -11,8 +11,10 @@
         
         header { background: var(--white); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
         nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
-        .logo span { color: var(--accent); }
+        
+        .logo-img { height: 45px; width: auto; display: block; }
+        .logo-link { display: flex; align-items: center; text-decoration: none; }
+        
         nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
         nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
         nav a:hover { color: var(--accent); }
@@ -39,7 +41,9 @@
 
     <header>
         <nav>
-            <div class="logo">DeeLit <span>Group</span></div>
+            <a href="index.html" class="logo-link">
+                <img src="Logo.jpg" alt="DeeLit Group Limited Logo" class="logo-img">
+            </a>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
