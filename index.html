@@ -46,16 +46,16 @@
             padding: 1.25rem 2rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
+       .logo-img {
+    height: 45px; /* Adjust height to fit your logo clean */
+    width: auto;
+    display: block;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
 
         nav ul {
             display: flex;
@@ -240,17 +240,19 @@
 <body>
 
     <!-- Header / Navigation -->
-    <header>
-        <nav>
-            <div class="logo">DeeLit <span>Group</span></div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Brands & Products</a></li>
-                <li><a href="contact.html" class="btn-contact">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+   <header>
+    <nav>
+        <a href="index.html" class="logo-link">
+            <img src="Logo.jpg" alt="DeeLit Group Limited Logo" class="logo-img">
+        </a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Brands & Products</a></li>
+            <li><a href="contact.html" class="btn-contact">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
 
     <!-- Hero Section -->
     <main>
