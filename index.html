@@ -46,7 +46,6 @@
             padding: 1.25rem 2rem;
         }
 
-        /* Logo Styling */
         .logo-img {
             height: 45px;
             width: auto;
@@ -185,13 +184,14 @@
             text-align: center;
             font-size: 2rem;
             color: var(--primary);
-            margin-bottom: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .grid-categories {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .cat-item {
@@ -201,6 +201,131 @@
             text-align: center;
             font-weight: 600;
             color: var(--primary);
+        }
+
+        /* Become Our Customer Section */
+        .customer-section {
+            padding: 4rem 2rem;
+            background-color: var(--bg-light);
+        }
+
+        .customer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .customer-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .customer-subtitle a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .download-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .download-card h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: var(--accent);
+        }
+
+        /* Subscribe Section */
+        .subscribe-section {
+            background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .subscribe-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .subscribe-container h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subscribe-container p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-form input[type="email"] {
+            flex: 1;
+            min-width: 260px;
+            padding: 0.85rem 1.2rem;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .subscribe-form button {
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #0056b3;
         }
 
         /* Footer */
@@ -237,6 +362,8 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             nav ul { display: none; }
+            .subscribe-form { flex-direction: column; }
+            .subscribe-form input[type="email"], .subscribe-form button { width: 100%; }
         }
     </style>
 </head>
@@ -257,8 +384,9 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Main Content -->
     <main>
+        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
                 <h1>Premier FMCG Wholesale & B2B Distribution</h1>
@@ -298,6 +426,42 @@
                 </div>
             </div>
         </section>
+
+        <!-- Become Our Customer Section -->
+        <section class="customer-section">
+            <div class="customer-container">
+                <h2 class="section-title">Become our customer</h2>
+                <p class="customer-subtitle">
+                    Do you wish to purchase from us? Please fill the Application Form, sign the terms and conditions and email us on <a href="mailto:info@delitgroup.com">info@delitgroup.com</a>. We look forward to working with you.
+                </p>
+
+                <div class="download-grid">
+                    <div class="download-card">
+                        <h3>Customer Application</h3>
+                        <p>DeeLit Group Application Form (PDF)</p>
+                        <a href="DeeLit_Group_Application_Form.pdf" download class="btn-download">Download</a>
+                    </div>
+                    <div class="download-card">
+                        <h3>Terms and Conditions</h3>
+                        <p>DeeLit Group Terms and Conditions (PDF)</p>
+                        <a href="DeeLit_Group_Terms_and_Conditions.pdf" download class="btn-download">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscribe Section -->
+        <section class="subscribe-section">
+            <div class="subscribe-container">
+                <h2>Subscribe</h2>
+                <p>Sign up to hear from us about specials, sales, and events.</p>
+                <form action="https://formsubmit.co/info@delitgroup.com" method="POST" class="subscribe-form">
+                    <input type="hidden" name="_subject" value="New Subscriber - DeeLit Group Website">
+                    <input type="email" name="Email" placeholder="Please enter your email here" required>
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -305,8 +469,8 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h4>DeeLit Group Limited</h4>
-                <p>128 City Road, London, EC1V 2NX, United Kingdom</p>
-                <p>Company No: 13414733</p>
+                <p>128 City Road, London EC1V 2NX</p>
+                <p>Company No: 13414733 | VAT: GB449508857</p>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
