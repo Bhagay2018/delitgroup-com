@@ -10,9 +10,9 @@
         body { color: var(--text-dark); line-height: 1.6; background-color: var(--bg-light); }
 
         header { background: var(--white); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
-        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 2rem; }
         
-        .logo-img { height: 75px; width: auto; display: block; }
+        .logo-img { height: 75px; width: auto; display: block; object-fit: contain; }
         .logo-link { display: flex; align-items: center; text-decoration: none; }
 
         nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
@@ -32,33 +32,42 @@
         .info-item h4 { color: var(--primary); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
         .info-item p { color: var(--text-light); font-size: 1rem; }
         .info-item a { color: var(--accent); text-decoration: none; }
-        .info-item a:hover { text-decoration: underline; }
 
-        .btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; background-color: var(--whatsapp); color: var(--white); padding: 0.75rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 0.5rem; margin-bottom: 1.5rem; width: 100%; transition: opacity 0.2s; }
-        .btn-whatsapp:hover { opacity: 0.9; text-decoration: none; }
+        .btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; background-color: var(--whatsapp); color: var(--white); padding: 0.75rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 0.5rem; margin-bottom: 1.5rem; width: 100%; }
 
         .guarantee-box { background-color: #f0f9ff; border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: 0 6px 6px 0; margin-top: 1.5rem; }
         .guarantee-box p { color: #0369a1; font-weight: 500; font-size: 0.95rem; }
 
         .social-links { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #e2e8f0; display: flex; gap: 1rem; }
         .social-links a { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-        .social-links a:hover { color: var(--accent); }
 
         form label { display: block; margin-bottom: 0.4rem; font-weight: 600; color: var(--text-dark); }
         form input, form textarea { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 1.2rem; font-size: 1rem; }
-        form button { background: var(--accent); color: var(--white); border: none; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1rem; transition: background 0.2s; }
-        form button:hover { background: #0056b3; }
+        form button { background: var(--accent); color: var(--white); border: none; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1rem; }
         
         .captcha-notice { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 1rem; }
 
         footer { background: var(--primary); color: #94a3b8; padding: 3rem 2rem 1.5rem; margin-top: 4rem; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
         .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid #1e293b; text-align: center; font-size: 0.875rem; }
+
+        /* Mobile Fix */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 0.75rem; padding: 0.75rem 1rem; text-align: center; }
+            .logo-img { height: 55px; margin: 0 auto; }
+            nav ul { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 0.6rem 1rem; width: 100%; }
+            nav a { font-size: 0.9rem; }
+            .btn-contact { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+            .page-header { padding: 2.5rem 1rem !important; }
+            .page-header h1 { font-size: 1.8rem !important; }
+            .container { padding: 0 1rem !important; margin: 1.5rem auto !important; grid-template-columns: 1fr !important; }
+            .contact-card { padding: 1.5rem !important; }
+            .footer-container { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navigation -->
     <header>
         <nav>
             <a href="index.html" class="logo-link">
@@ -73,15 +82,12 @@
         </nav>
     </header>
 
-    <!-- Page Header Banner -->
     <section class="page-header">
         <h1>Let’s talk</h1>
         <p>We have answers to your business queries!</p>
     </section>
 
-    <!-- Main Content -->
     <main class="container">
-        <!-- Contact Details -->
         <div class="contact-card">
             <h2>DeeLit Group Limited</h2>
             
@@ -122,18 +128,15 @@
                 <p>We have what you need and at prices you will love. Guaranteed! Get in touch and let’s work together to make you a high-ranking business.</p>
             </div>
 
-            <!-- Social Media Links -->
             <div class="social-links">
                 <a href="#" target="_blank">Facebook</a>
                 <a href="#" target="_blank">Instagram</a>
             </div>
         </div>
 
-        <!-- Contact Form (HTTPS Secure via FormSubmit) -->
         <div class="contact-card">
             <h2>Send Us a Message</h2>
             <form action="https://formsubmit.co/Info@delitgroup.com" method="POST">
-                <!-- Custom Configuration -->
                 <input type="hidden" name="_subject" value="New Business Enquiry - DeeLit Group Website">
                 <input type="hidden" name="_template" value="table">
 
@@ -153,7 +156,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div>
