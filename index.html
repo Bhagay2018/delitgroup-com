@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeeLit Group Limited | B2B FMCG Wholesale Distributor</title>
     <style>
-        /* CSS Reset & General Rules */
         * {
             margin: 0;
             padding: 0;
@@ -16,6 +15,7 @@
         :root {
             --primary: #0a2540;
             --accent: #0070f3;
+            --accent-gold: #d4a017;
             --text-dark: #2d3748;
             --text-light: #64748b;
             --bg-light: #f8fafc;
@@ -28,7 +28,7 @@
             background-color: var(--bg-light);
         }
 
-        /* Navigation Bar */
+        /* Header & Navigation */
         header {
             background: var(--white);
             border-bottom: 1px solid #e2e8f0;
@@ -43,13 +43,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.25rem 2rem;
+            padding: 0.5rem 2rem;
         }
 
         .logo-img {
             height: 75px;
             width: auto;
             display: block;
+            object-fit: contain;
         }
 
         .logo-link {
@@ -61,7 +62,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -69,6 +70,7 @@
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
+            font-size: 0.95rem;
             transition: color 0.2s;
         }
 
@@ -76,10 +78,15 @@
             color: var(--accent);
         }
 
+        .nav-offers {
+            color: var(--accent-gold) !important;
+            font-weight: 700 !important;
+        }
+
         .btn-contact {
             background-color: var(--primary);
             color: var(--white) !important;
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1.1rem;
             border-radius: 6px;
             font-weight: 600;
         }
@@ -88,27 +95,56 @@
             background-color: var(--accent);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
-            color: var(--white);
-            padding: 5rem 2rem;
+        /* Hero Slider Section */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            background-color: var(--primary);
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 0 2rem;
+        }
+
+        .slide.active {
+            opacity: 1;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            color: var(--white);
         }
 
-        .hero h1 {
+        .hero-content h1 {
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 1.2rem;
             line-height: 1.2;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.25rem;
             color: #cbd5e1;
             margin-bottom: 2rem;
@@ -118,6 +154,7 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn-primary {
@@ -129,6 +166,15 @@
             font-weight: 600;
         }
 
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: #000;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
         .btn-secondary {
             border: 1px solid #cbd5e1;
             color: var(--white);
@@ -136,6 +182,52 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
+        }
+
+        /* Slider Controls */
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 1rem 1.2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .prev-btn { left: 1.5rem; }
+        .next-btn { right: 1.5rem; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--white);
         }
 
         /* Value Props */
@@ -167,7 +259,27 @@
             font-size: 0.95rem;
         }
 
-        /* Brands/Categories Section */
+        /* Banner CTA for Offers */
+        .offers-banner {
+            background: linear-gradient(135deg, #0f2b48 0%, #1e5aa0 100%);
+            color: white;
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+
+        .offers-banner h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .offers-banner p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Categories Section */
         .categories {
             background: var(--white);
             padding: 4rem 2rem;
@@ -201,9 +313,10 @@
             text-align: center;
             font-weight: 600;
             color: var(--primary);
+            border: 1px solid #e2e8f0;
         }
 
-        /* Become Our Customer Section */
+        /* Customer Downloads Section */
         .customer-section {
             padding: 4rem 2rem;
             background-color: var(--bg-light);
@@ -271,7 +384,7 @@
             background-color: var(--accent);
         }
 
-        /* Subscribe Section */
+        /* Newsletter Subscription */
         .subscribe-section {
             background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
             color: var(--white);
@@ -360,16 +473,68 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            nav ul { display: none; }
-            .subscribe-form { flex-direction: column; }
-            .subscribe-form input[type="email"], .subscribe-form button { width: 100%; }
+            nav {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+                text-align: center;
+            }
+
+            .logo-img {
+                height: 55px;
+                margin: 0 auto;
+            }
+
+            nav ul {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.6rem 1rem;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 0.88rem;
+            }
+
+            .slider-container {
+                height: 380px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .prev-btn, .next-btn {
+                padding: 0.6rem 0.8rem;
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 0 1rem !important;
+                margin: 1.5rem auto !important;
+            }
+
+            .grid-categories, .download-grid, .footer-container {
+                grid-template-columns: 1fr !important;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .subscribe-form input[type="email"], .subscribe-form button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navigation -->
     <header>
         <nav>
             <a href="index.html" class="logo-link">
@@ -379,26 +544,58 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="products.html">Brands & Products</a></li>
+                <li><a href="offers.html" class="nav-offers">📦 Floor Stock Offers</a></li>
                 <li><a href="contact.html" class="btn-contact">Contact Us</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Premier FMCG Wholesale & B2B Distribution</h1>
-                <p>Connecting international brands with retailers, e-commerce channels, and bulk buyers across the UK and Europe.</p>
-                <div class="hero-buttons">
-                    <a href="contact.html" class="btn-primary">Wholesale Enquiries</a>
-                    <a href="about.html" class="btn-secondary">Learn More</a>
+        <section class="slider-container">
+            <div class="slider">
+                <div class="slide active" style="background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85));">
+                    <div class="hero-content">
+                        <h1>Premier FMCG Wholesale & B2B Distribution</h1>
+                        <p>Connecting international brands with retailers, e-commerce channels, and bulk buyers across the UK and Europe.</p>
+                        <div class="hero-buttons">
+                            <a href="offers.html" class="btn-gold">View Live Floor Stock</a>
+                            <a href="contact.html" class="btn-secondary">Wholesale Enquiries</a>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="slide" style="background: linear-gradient(rgba(15,43,72,0.85), rgba(15,43,72,0.85));">
+                    <div class="hero-content">
+                        <h1>Leading Global FMCG Brands</h1>
+                        <p>Bulk supply for Oral-B, Braun, Philips, De'Longhi, Duracell, and Brita at unbeatable prices.</p>
+                        <div class="hero-buttons">
+                            <a href="products.html" class="btn-primary">View Brands Portfolio</a>
+                            <a href="about.html" class="btn-secondary">About Our Network</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide" style="background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85));">
+                    <div class="hero-content">
+                        <h1>Reliable Warehousing & Logistics</h1>
+                        <p>Hassle-free B2B sourcing with 2–3 week standard delivery windows and seamless fulfillment.</p>
+                        <div class="hero-buttons">
+                            <a href="contact.html" class="btn-primary">Partner With Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
             </div>
         </section>
 
-        <!-- Value Propositions -->
         <section class="features">
             <div class="feature-card">
                 <h3>Global Sourcing</h3>
@@ -414,7 +611,12 @@
             </div>
         </section>
 
-        <!-- Core Categories -->
+        <section class="offers-banner">
+            <h2>Current Floor Stock & Allocation Offers</h2>
+            <p>Check available layer and case inventory, calculate order estimates in real-time, and reserve your batch allocation directly online.</p>
+            <a href="offers.html" class="btn-gold">Request Stock Allocation & Proforma →</a>
+        </section>
+
         <section class="categories">
             <div class="categories-container">
                 <h2 class="section-title">Core Brand Portfolio & Categories</h2>
@@ -427,12 +629,11 @@
             </div>
         </section>
 
-        <!-- Become Our Customer Section -->
         <section class="customer-section">
             <div class="customer-container">
                 <h2 class="section-title">Become our customer</h2>
                 <p class="customer-subtitle">
-                    Do you wish to purchase from us? Please fill the Application Form, sign the terms and conditions and email us on <a href="mailto:info@delitgroup.com">info@delitgroup.com</a>. We look forward to working with you.
+                    Do you wish to purchase from us? Please fill the Application Form, sign the terms and conditions and email us on <a href="mailto:Info@delitgroup.com">Info@delitgroup.com</a>. We look forward to working with you.
                 </p>
 
                 <div class="download-grid">
@@ -450,12 +651,11 @@
             </div>
         </section>
 
-        <!-- Subscribe Section -->
         <section class="subscribe-section">
             <div class="subscribe-container">
                 <h2>Subscribe</h2>
                 <p>Sign up to hear from us about specials, sales, and events.</p>
-                <form action="https://formsubmit.co/info@delitgroup.com" method="POST" class="subscribe-form">
+                <form action="https://formsubmit.co/Info@delitgroup.com" method="POST" class="subscribe-form">
                     <input type="hidden" name="_subject" value="New Subscriber - DeeLit Group Website">
                     <input type="email" name="Email" placeholder="Please enter your email here" required>
                     <button type="submit">Sign up</button>
@@ -464,7 +664,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -474,7 +673,7 @@
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p>Email: info@delitgroup.com</p>
+                <p>Email: Info@delitgroup.com</p>
                 <p>Phone: +44 1753 463 912</p>
             </div>
         </div>
@@ -483,5 +682,41 @@
         </div>
     </footer>
 
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        function showSlide(index) {
+            if (index >= slides.length) slideIndex = 0;
+            if (index < 0) slideIndex = slides.length - 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+
+        function moveSlide(step) {
+            clearInterval(slideInterval);
+            slideIndex += step;
+            showSlide(slideIndex);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function currentSlide(index) {
+            clearInterval(slideInterval);
+            slideIndex = index;
+            showSlide(slideIndex);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+    </script>
 </body>
 </html>
