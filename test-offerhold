@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Stock Allocation & Reservation | DeeLit Group Limited</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #0f2b48;
+            --primary-accent: #1e5aa0;
+            --accent-gold: #d4a017;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --danger: #dc2626;
+            --success: #16a34a;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 2rem;
+        }
+
+        .logo-img {
+            height: 75px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-accent);
+        }
+
+        .nav-offers {
+            color: var(--accent-gold) !important;
+            font-weight: 700 !important;
+        }
+
+        .btn-contact {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            padding: 0.5rem 1.1rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* Page Layout */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .badge-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1.25rem;
+        }
+
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge.gold {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Card Section */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .form-group input {
+            padding: 0.7rem 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-accent);
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .qty-input {
+            width: 90px;
+            padding: 0.45rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .moq-pill {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .moq-warning {
+            color: var(--danger);
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* Summary */
+        .summary-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            max-width: 440px;
+            margin-left: auto;
+            margin-top: 1.5rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-top: 2px solid var(--border-color);
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+            color: var(--primary);
+        }
+
+        /* Terms */
+        .terms-box {
+            background: #fefce8;
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+            font-size: 0.92rem;
+        }
+
+        .terms-box ul {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .terms-box li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #94a3b8;
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 0.75rem 1rem;
+                text-align: center;
+            }
+
+            .logo-img {
+                height: 55px;
+                margin: 0 auto;
+            }
+
+            nav ul {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.6rem 1rem;
+                width: 100%;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo-link">
+                <img src="Logo.jpg" alt="DeeLit Group Limited Logo" class="logo-img">
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Brands & Products</a></li>
+                <li><a href="offers.html" class="nav-offers">📦 Floor Stock Offers</a></li>
+                <li><a href="contact.html" class="btn-contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <header class="page-header">
+            <h1>Floor Stock Allocation & Reservation</h1>
+            <p>DeeLit Group Limited · Direct B2B Wholesale Stock Request</p>
+            <div class="badge-bar">
+                <span class="badge gold">⏱ Floor Stock Offer: Live / Limited Qty</span>
+                <span class="badge">🚚 Dispatch Lead Time: 2–3 Weeks</span>
+                <span class="badge">💳 50% Advance on Proforma / 50% on Delivery</span>
+            </div>
+        </header>
+
+        <form id="reservationForm" action="https://formsubmit.co/Info@delitgroup.com" method="POST">
+            <input type="hidden" name="_subject" value="New Floor Stock Reservation & Quote Request">
+            <input type="hidden" name="_template" value="table">
+
+            <section class="card">
+                <h2>1. Buyer Details & Destination</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="companyName">Company Name *</label>
+                        <input type="text" id="companyName" name="Company_Name" required placeholder="e.g. Acme Retail Ltd" />
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPerson">Contact Person *</label>
+                        <input type="text" id="contactPerson" name="Contact_Person" required placeholder="e.g. Purchasing Manager" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Business Email *</label>
+                        <input type="email" id="email" name="Email" required placeholder="purchasing@company.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone / WhatsApp *</label>
+                        <input type="tel" id="phone" name="Phone" required placeholder="+44 7123 456789" />
+                    </div>
+                    <div class="form-group">
+                        <label for="vatEori">VAT / EORI Number (Optional)</label>
+                        <input type="text" id="vatEori" name="VAT_EORI" placeholder="GB123456789" />
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryAddress">Delivery Destination / Postcode *</label>
+                        <input type="text" id="deliveryAddress" name="Delivery_Address" required placeholder="City, Postcode, Country" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>2. Current Floor Stock & Quantity Selection</h2>
+                <div class="table-container">
+                    <table id="stockTable">
+                        <thead>
+                            <tr>
+                                <th>Brand & Description</th>
+                                <th>Case / Layer Specs</th>
+                                <th>Wholesale Price</th>
+                                <th>Order Qty (Cases)</th>
+                                <th>Line Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="product-row" data-price="45.00" data-moq="10" data-title="Oral-B Precision Clean 4-Pack">
+                                <td>
+                                    <strong>Oral-B Precision Clean 4-Pack</strong>
+                                    <br><span class="moq-pill">Layer MOQ: 10 Cases</span>
+                                </td>
+                                <td>10 Cases / Layer</td>
+                                <td>£45.00 / case</td>
+                                <td>
+                                    <input type="number" min="0" value="0" class="qty-input" name="Qty_Oral_B_4Pack" />
+                                    <span class="moq-warning" style="display: none;">Under MOQ (£100 handling fee)</span>
+                                </td>
+                                <td class="line-total">£0.00</td>
+                            </tr>
+
+                            <tr class="product-row" data-price="185.00" data-moq="5" data-title="Braun Series 8 Electric Shaver">
+                                <td>
+                                    <strong>Braun Series 8 Electric Shaver</strong>
+                                    <br><span class="moq-pill">Master MOQ: 5 Cases</span>
+                                </td>
+                                <td>5 Cases / Master</td>
+                                <td>£185.00 / case</td>
+                                <td>
+                                    <input type="number" min="0" value="0" class="qty-input" name="Qty_Braun_Series8" />
+                                    <span class="moq-warning" style="display: none;">Under MOQ (£100 handling fee)</span>
+                                </td>
+                                <td class="line-total">£0.00</td>
+                            </tr>
+
+                            <tr class="product-row" data-price="62.50" data-moq="20" data-title="De'Longhi EcoDecalk 500ml">
+                                <td>
+                                    <strong>De'Longhi EcoDecalk 500ml</strong>
+                                    <br><span class="moq-pill">Layer MOQ: 20 Cases</span>
+                                </td>
+                                <td>20 Cases / Layer</td>
+                                <td>£62.50 / case</td>
+                                <td>
+                                    <input type="number" min="0" value="0" class="qty-input" name="Qty_Delonghi_EcoDecalk" />
+                                    <span class="moq-warning" style="display: none;">Under MOQ (£100 handling fee)</span>
+                                </td>
+                                <td class="line-total">£0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-row">
+                        <span>Stock Subtotal:</span>
+                        <span id="subtotalAmount">£0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Handling / Fulfilment (Under MOQ):</span>
+                        <span id="moqFeeAmount">£0.00</span>
+                    </div>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                        *Below-MOQ charge of £100/box is subjective to DeeLit final warehouse confirmation.
+                    </p>
+                    <div class="summary-row total">
+                        <span>Estimated Total:</span>
+                        <span id="grandTotalAmount">£0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>3. Terms & Reservation Policy</h2>
+                <div class="terms-box">
+                    <strong>Please Review Order Workflow:</strong>
+                    <ul>
+                        <li><strong>No Immediate Payment Required:</strong> Submitting this form is a non-binding allocation reservation and quote request.</li>
+                        <li><strong>Confirmation & Proforma Invoice:</strong> Our team will verify warehouse stock and issue an official Proforma Invoice (PI) with confirmed freight within 24 business hours.</li>
+                        <li><strong>Payment Schedule:</strong> <strong>50% Advance Deposit</strong> upon Proforma confirmation to secure stock; <strong>50% Balance</strong> prior to dispatch.</li>
+                        <li><strong>Lead Time:</strong> Estimated dispatch window is <strong>2–3 weeks</strong> from deposit confirmation.</li>
+                    </ul>
+                </div>
+
+                <input type="hidden" id="fullOrderSummary" name="Order_Summary" value="" />
+
+                <div class="btn-container">
+                    <button type="button" class="btn btn-secondary" onclick="window.print()">Print / Save Summary</button>
+                    <button type="submit" class="btn btn-primary">Submit Stock Reservation Request</button>
+                </div>
+            </section>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h4 style="color: white; margin-bottom: 0.5rem;">DeeLit Group Limited</h4>
+                <p>128 City Road, London EC1V 2NX</p>
+                <p>Company No: 13414733 | VAT: GB449508857</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 0.5rem;">Contact</h4>
+                <p>Email: Info@delitgroup.com</p>
+                <p>Phone: +44 1753 463 912</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DeeLit Group Limited. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const rows = document.querySelectorAll('.product-row');
+        const subtotalEl = document.getElementById('subtotalAmount');
+        const moqFeeEl = document.getElementById('moqFeeAmount');
+        const grandTotalEl = document.getElementById('grandTotalAmount');
+        const orderSummaryInput = document.getElementById('fullOrderSummary');
+
+        function calculateTotals() {
+            let subtotal = 0;
+            let totalMoqSurcharge = 0;
+            let summaryText = [];
+
+            rows.forEach(row => {
+                const price = parseFloat(row.dataset.price);
+                const moq = parseInt(row.dataset.moq, 10);
+                const title = row.dataset.title;
+                const qtyInput = row.querySelector('.qty-input');
+                const lineTotalEl = row.querySelector('.line-total');
+                const moqWarning = row.querySelector('.moq-warning');
+                
+                const qty = parseInt(qtyInput.value, 10) || 0;
+                const lineTotal = qty * price;
+                
+                lineTotalEl.textContent = `£${lineTotal.toFixed(2)}`;
+
+                if (qty > 0) {
+                    subtotal += lineTotal;
+                    if (qty < moq) {
+                        moqWarning.style.display = 'block';
+                        totalMoqSurcharge += 100;
+                        summaryText.push(`${title}: ${qty} cases @ £${price}/case = £${lineTotal.toFixed(2)} [UNDER MOQ - £100 handling fee applies]`);
+                    } else {
+                        moqWarning.style.display = 'none';
+                        summaryText.push(`${title}: ${qty} cases @ £${price}/case = £${lineTotal.toFixed(2)} [Standard MOQ Met]`);
+                    }
+                } else {
+                    moqWarning.style.display = 'none';
+                }
+            });
+
+            const grandTotal = subtotal + totalMoqSurcharge;
+
+            subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
+            moqFeeEl.textContent = `£${totalMoqSurcharge.toFixed(2)}`;
+            grandTotalEl.textContent = `£${grandTotal.toFixed(2)}`;
+
+            orderSummaryInput.value = `
+Order Lines:
+${summaryText.join('\n')}
+
+Subtotal: £${subtotal.toFixed(2)}
+Under-MOQ Surcharge: £${totalMoqSurcharge.toFixed(2)}
+Estimated Total: £${grandTotal.toFixed(2)}
+            `.trim();
+        }
+
+        rows.forEach(row => {
+            const input = row.querySelector('.qty-input');
+            input.addEventListener('input', calculateTotals);
+        });
+
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            let totalQty = 0;
+            rows.forEach(row => {
+                totalQty += parseInt(row.querySelector('.qty-input').value, 10) || 0;
+            });
+
+            if (totalQty === 0) {
+                e.preventDefault();
+                alert('Please enter an order quantity for at least one floor stock item before submitting.');
+            }
+        });
+    </script>
+</body>
+</html>
